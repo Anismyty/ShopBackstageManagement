@@ -1,6 +1,7 @@
 <template>
   <div class="top">
-    <el-link icon="el-icon-s-home" :underline="false" @click="$router.push({ path: '/dashboardPanel' })">首页</el-link>
+    <!--     <el-link icon="el-icon-s-home" :underline="false" @click="toHome">首页</el-link> -->
+    <span class="goHome" @click="$router.push({ path: '/dashboardPanel' })"><i class="el-icon-s-home"></i>首页</span>
     <i class="el-icon-arrow-right" v-if="name1" />
     {{ name1 }}
     <i class="el-icon-arrow-right" v-if="name2" />
@@ -9,6 +10,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   name: 'TopNav',
   props: {
@@ -17,6 +19,15 @@ export default {
     },
     name2: {
       type: String
+    }
+  },
+  methods: {
+    toHome() {
+      try {
+        this.$router.push({ path: '/dashboardPanel' })
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }
@@ -32,6 +43,13 @@ export default {
   border-radius: 10px;
   padding: 10px 10px;
   box-shadow: 0 0 10px 5px #e3e3e3;
+  .goHome {
+    cursor: pointer;
+  }
+  .goHome:hover {
+    color: #075c14;
+    font-weight: bold;
+  }
   i {
     margin-left: 5px;
     margin-right: 5px;
